@@ -1,0 +1,163 @@
+/* === User Quiz Page Styling === */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    background: #f4f4f4;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px;
+    background: #2C3E50;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.3s ease;
+    font-weight: bold;
+}
+
+.sidebar a.active,
+.sidebar a:hover {
+    background: #4CAF50;
+}
+
+/* Main Content Styling */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.main-content h1 {
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: #2C3E50;
+}
+
+/* Quiz Card Styling */
+.quiz-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px auto;
+    width: 80%;
+    text-align: left;
+    animation: fadeIn 0.4s ease-in;
+}
+
+/* Quiz Title and Question Styling */
+.quiz-card h3 {
+    color: #4CAF50;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.quiz-card p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Quiz Option Styling */
+.quiz-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 16px;
+    color: #444;
+}
+
+/* Radio Button Hide & Custom Style */
+.quiz-option input[type="radio"] {
+    display: none;
+}
+
+/* Custom Radio Button Look */
+.quiz-option span.choice-letter {
+    font-weight: bold;
+    color: #4CAF50;
+    padding: 5px 10px;
+    background: #eafaf1;
+    border-radius: 50%;
+}
+
+/* Selected Choice Effect */
+.quiz-option:hover,
+.quiz-option input[type="radio"]:checked + span.choice-letter {
+    background: #4CAF50;
+    color: #fff;
+}
+
+/* Submit Button Styling */
+.submit-all {
+    background: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Button Hover Effect */
+.submit-all:hover {
+    background: #45a049;
+}
+
+/* No Quizzes Message */
+.no-quizzes {
+    color: #e74c3c;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Mobile Responsive Tweaks */
+@media (max-width: 600px) {
+    .quiz-card {
+        width: 100%;
+    }
+
+    .sidebar {
+        width: 200px;
+    }
+
+    .main-content h1 {
+        font-size: 24px;
+    }
+}

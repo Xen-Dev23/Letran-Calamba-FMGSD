@@ -1,0 +1,43 @@
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+.user-table th, .user-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.user-table th {
+    background-color:rgb(196, 184, 82);
+}
+.progress-bar {
+    width: 100px;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.progress {
+    height: 100%;
+    background-color:rgb(153, 37, 199);
+    transition: width 0.3s ease;
+}
+.error-message {
+    color: red;
+    padding: 10px;
+    margin: 10px 0;
+}
+.no-data {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+/* Png Image for dashboard icon */
+.sidebar img {
+width: 24px; /* Adjust size as needed */
+height: 24px;
+margin-right: 10px; /* Spacing between icon and text */
+vertical-align: middle;
+}

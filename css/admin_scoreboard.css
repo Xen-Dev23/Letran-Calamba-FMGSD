@@ -1,0 +1,10 @@
+.pass { color: green; }
+        .fail { color: red; }
+
+        /* Png Image for dashboard icon */
+        .sidebar img {
+        width: 24px; /* Adjust size as needed */
+        height: 24px;
+        margin-right: 10px; /* Spacing between icon and text */
+        vertical-align: middle;
+}

@@ -1,0 +1,109 @@
+.upload-container {
+    margin: 2rem;
+    max-width: 800px;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.upload-container h1 {
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #1e88e5;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-group input[type="file"] {
+    padding: 0.5rem 0;
+}
+
+.thumbnail-preview {
+    margin-top: 0.5rem;
+    max-width: 200px;
+    border-radius: 5px;
+    display: none;
+}
+
+.upload-btn {
+    background-color: #1e88e5;
+    color: white;
+    padding: 0.50rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: fit-content;
+}
+
+.upload-btn:hover {
+    background-color: #1565c0;
+}
+
+.message {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Png Image for dashboard icon */
+.sidebar img {
+width: 24px; /* Adjust size as needed */
+height: 24px;
+margin-right: 10px; /* Spacing between icon and text */
+vertical-align: middle;
+}
