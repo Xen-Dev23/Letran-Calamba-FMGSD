@@ -27,33 +27,9 @@ $results_query = $conn->query("
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/user_result.css">
     <link rel="icon" type="image/png" href="../assets/images/favicon.ico">
     <title>Quiz Results</title>
-    <style>
-        .quiz-results-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .quiz-results-table th, .quiz-results-table td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        .quiz-results-table th {
-            background:rgb(218, 72, 72);
-        }
-        .correct { color: green; }
-        .wrong { color: red; }
-
-        /* Png Image for dashboard icon */
-        .sidebar img {
-        width: 24px; /* Adjust size as needed */
-        height: 24px;
-        margin-right: 10px; /* Spacing between icon and text */
-        vertical-align: middle;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
