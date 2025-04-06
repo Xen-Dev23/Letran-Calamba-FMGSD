@@ -28,96 +28,9 @@ $latest_score = $score ? $score['score'] : "No score yet";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/user_dashboard.css">
     <link rel="icon" type="image/png" href="../assets/images/favicon.ico">
     <title>User Dashboard</title>
-    <style>
-        .modules-container {
-            margin: 2rem;
-            max-width: 1200px;
-        }
-        .welcome-section {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .right-section {
-            padding: 1rem;
-        }
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 1rem;
-        }
-        .profile {
-            position: relative;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-        }
-        .profile-photo {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-left: 15px;
-        }
-        .profile-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .profile-dropdown {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 50px;
-            background: white;
-            min-width: 200px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            border-radius: 5px;
-            z-index: 1000;
-        }
-        .profile-info {
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-            text-align: center;
-        }
-        .profile-info p {
-            margin: 0;
-            color: #333;
-        }
-        .profile-info small {
-            color: #777;
-        }
-        .profile-actions {
-            padding: 5px 0;
-        }
-        .profile-actions a {
-            display: flex;
-            align-items: center;
-            padding: 8px 15px;
-            text-decoration: none;
-            color: #666;
-        }
-        .profile-actions a:hover {
-            background: #f5f5f5;
-            color: #000;
-        }
-        .profile-actions span {
-            margin-right: 10px;
-        }
-
-        /* Png Image for dashboard icon */
-        .sidebar img {
-        width: 24px; /* Adjust size as needed */
-        height: 24px;
-        margin-right: 10px; /* Spacing between icon and text */
-        vertical-align: middle;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
