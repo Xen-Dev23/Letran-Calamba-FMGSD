@@ -12,6 +12,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] != "Admin") {
 $result = $conn->query("
     SELECT 
         users.fullname, 
+        users.profile_picture,
         quizzes.title, 
         COUNT(results.id) AS total_questions, 
         SUM(results.is_correct) AS correct_answers, 
@@ -33,7 +34,6 @@ $result = $conn->query("
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/add_quiz.css">
     <link rel="stylesheet" href="../css/admin_scoreboard.css">
     <link rel="icon" type="image/png" href="../assets/images/favicon.ico">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
@@ -92,40 +92,51 @@ $result = $conn->query("
             </div>
         </aside>
 
-        <div class="main-content">
+        <!-- Main Content -->
+        <main class="users-container">
             <h1>User Scores</h1>
-            <table>
-                <tr>
-                    <th>User</th>
-                    <th>Quiz Title</th>
-                    <th>Overall Score</th>
-                    <th>Percentage</th>
-                    <th>Status</th>
-                    <th>Attempts</th>
-                    <th>Last Attempt</th>
-                </tr>
-
-                <?php
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $overall_score = "{$row['correct_answers']}/{$row['total_questions']}";
-                        $status = ($row['percentage'] >= 70) ? "<span class='pass'>Pass</span>" : "<span class='fail'>Fail</span>";
-                        echo "<tr>
-                            <td>{$row['fullname']}</td>
-                            <td>{$row['title']}</td>
-                            <td>{$overall_score}</td>
-                            <td>{$row['percentage']}%</td>
-                            <td>{$status}</td>
-                            <td>{$row['attempts']}</td>
-                            <td>{$row['last_attempt']}</td>
-                        </tr>";
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th>Profile Picture</th>
+                        <th>User</th>
+                        <th>Quiz Title</th>
+                        <th>Overall Score</th>
+                        <th>Percentage</th>
+                        <th>Status</th>
+                        <th>Attempts</th>
+                        <th>Last Attempt</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $overall_score = "{$row['correct_answers']}/{$row['total_questions']}";
+                            $status = ($row['percentage'] >= 70) ? "<span class='status-pass'>Pass</span>" : "<span class='status-fail'>Fail</span>";
+                            $profile_pic = $row['profile_picture'] ? htmlspecialchars($row['profile_picture']) : '../assets/images/profile-placeholder.png';
+                            $last_attempt = $row['last_attempt'] ? date('Y-m-d h:i A', strtotime($row['last_attempt'])) : 'Never';
+                            echo "<tr>
+                                <td><img src='$profile_pic' alt='Profile Picture' class='profile-pic' style='width: 50px; height: 50px; border-radius: 50%; object-fit: cover;'></td>
+                                <td>" . htmlspecialchars($row['fullname']) . "</td>
+                                <td>" . htmlspecialchars($row['title']) . "</td>
+                                <td>" . htmlspecialchars($overall_score) . "</td>
+                                <td>" . htmlspecialchars($row['percentage']) . "%</td>
+                                <td>" . $status . "</td>
+                                <td>" . htmlspecialchars($row['attempts']) . "</td>
+                                <td>" . htmlspecialchars($last_attempt) . "</td>
+                            </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='8'>No scores available yet.</td></tr>";
                     }
-                } else {
-                    echo "<tr><td colspan='7'>No scores available yet.</td></tr>";
-                }
-                ?>
+                    ?>
+                </tbody>
             </table>
-        </div>
+        </main>
+        <!-- End of Main Content -->
     </div>
+
+    <script src="../js/admin.js"></script>
 </body>
 </html>
