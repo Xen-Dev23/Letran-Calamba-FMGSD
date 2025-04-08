@@ -63,6 +63,7 @@
                     <a href="#" class="nav-link">ABOUT</a>
                     <ul class="dropdown">
                         <li><a href="#">About Letran Calamba</a></li>
+                        <li><a href="#">FMGSD</a></li>
                     </ul>
                 </li>
                 <li>
