@@ -98,14 +98,16 @@ CREATE TABLE training_videos (
 -- Table structure for table `users`
 --
 
-CREATE TABLE users (
+CREATE TABLE `users` (
   id int(11) NOT NULL,
   fullname varchar(255) NOT NULL,
   email varchar(255) NOT NULL,
   password varchar(255) NOT NULL,
   role enum('User','Admin') NOT NULL,
   profile_picture varchar(255) DEFAULT '../assets/images/profile-placeholder.png',
-  last_login datetime DEFAULT NULL
+  last_login datetime DEFAULT NULL,
+  status enum('online','offline') DEFAULT 'offline',
+  is_online tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
