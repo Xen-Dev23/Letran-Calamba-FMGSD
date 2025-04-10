@@ -56,7 +56,7 @@ class VideoManager {
     }
     
     public function getAllVideos() {
-        $sql = "SELECT * FROM training_videos ORDER BY created_at DESC";
+        $sql = "SELECT * FROM training_videos ORDER BY created_at ASC"; // Changed to ASC for oldest first
         return $this->conn->query($sql);
     }
     
@@ -260,7 +260,7 @@ $videos = $videoManager->getAllVideos();
                                     </div>
                                     <div class="video-card-actions">
                                         <a href="<?php echo htmlspecialchars($video['file_path']); ?>" class="btn btn-play">
-                                            <span class="material-icons-sharp">play_circle</span> Play
+                                            <span class="material-icons-sharp">visibility</span> Play
                                         </a>
                                         <button class="btn btn-edit" onclick='openEditModal(<?php echo json_encode($video); ?>)'>
                                             <span class="material-icons-sharp">edit</span> Edit
