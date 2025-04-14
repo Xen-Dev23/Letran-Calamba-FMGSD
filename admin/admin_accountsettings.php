@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $update_params[] = $hashed_password;
                         $update_types .= "s";
                     } else {
-                        $error_message = "New password must MOST be at least 8 characters long.";
+                        $error_message = "New password must be at least 8 characters long.";
                     }
                 } else {
                     $error_message = "New password and confirmation do not match.";
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Handle profile picture upload
     if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] !== UPLOAD_ERR_NO_FILE) {
-        $target_dir = "../uploads/profile_pics/";
+        $target_dir = "../Uploads/profile_pics/";
         if (!file_exists($target_dir)) {
             mkdir($target_dir, 0777, true);
         }
@@ -208,7 +208,7 @@ $profile_pic = isset($user['profile_picture']) && !empty($user['profile_picture'
                     <img src="../assets/icons/video_library.png" alt="Videos Icon">
                     <h3>Video List</h3>
                 </a>
-                <a href="admin_accountsettings.php"  class="active">
+                <a href="admin_accountsettings.php" class="active">
                     <img src="../assets/icons/settings.png" alt="Settings Icon">
                     <h3>Account Settings</h3>
                 </a>
@@ -283,54 +283,9 @@ $profile_pic = isset($user['profile_picture']) && !empty($user['profile_picture'
             </div>
         </main>
         <!-- End of Main Content -->
-
-        <!-- Right Section -->
-        <div class="right-section">
-            <div class="nav">
-                <button id="menu-btn">
-                    <span class="material-icons-sharp">menu</span>
-                </button>
-                
-                <!-- Profile Section -->
-                <div class="profile">
-                    <div class="profile-photo">
-                        <img src="<?php echo $profile_pic; ?>" alt="Profile" id="profile-pic">
-                    </div>
-                    <div class="profile-dropdown" id="profile-dropdown">
-                        <div class="profile-info">
-                            <p><b><?php echo $_SESSION['fullname']; ?></b></p>
-                            <small>Admin</small>
-                        </div>
-                        <div class="profile-actions">
-                            <a href="admin_accountsettings.php">
-                                <span class="material-icons-sharp">settings</span>
-                                Account Settings
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- End of Profile Section -->
-            </div>
-        </div>
-        <!-- End of Right Section -->
     </div>
 
     <script>
-    // Profile Dropdown Toggle on Click
-    const profile = document.querySelector('.profile');
-    const profileDropdown = document.querySelector('#profile-dropdown');
-
-    profile.addEventListener('click', (e) => {
-        e.stopPropagation();
-        profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
-    });
-
-    document.addEventListener('click', (e) => {
-        if (!profile.contains(e.target)) {
-            profileDropdown.style.display = 'none';
-        }
-    });
-
     // Preview profile picture on file selection
     document.getElementById('profile_picture').addEventListener('change', function(event) {
         const file = event.target.files[0];
@@ -339,8 +294,6 @@ $profile_pic = isset($user['profile_picture']) && !empty($user['profile_picture'
             reader.onload = function(e) {
                 const profilePicForm = document.querySelector('.profile-picture img');
                 profilePicForm.src = e.target.result;
-                const profilePicNav = document.getElementById('profile-pic');
-                profilePicNav.src = e.target.result;
             };
             reader.readAsDataURL(file);
         }
