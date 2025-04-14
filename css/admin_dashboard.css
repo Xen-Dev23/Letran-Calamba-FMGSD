@@ -1,151 +1,163 @@
-.modules-container {
-    margin: 2rem;
-    max-width: 1200px;
-}
 .welcome-section {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.notification {
-    position: relative;
-    cursor: pointer;
-    margin-right: 20px;
-}
-.notification img {
-    width: 24px;
-    height: 24px;
-    vertical-align: middle;
-}
-.notification .badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background: #ff0000;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 12px;
-    display: none;
-}
-.notification-dropdown {
-    display: none;
-    position: absolute;
-    right: 0;
-    background: white;
-    min-width: 350px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    border-radius: 5px;
-    max-height: 400px;
-    overflow-y: auto;
-    z-index: 1000;
-}
-.notification:hover .notification-dropdown {
-    display: block;
-}
-.notification-item {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #fff;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items to the top */
+    align-items: flex-end; /* Align items to the right */
+    margin-right: 120px; /* Space from the right side */
+    margin-top: 20px; /* Space from the top */
+    text-align: right; /* Align text to the right */
 }
-.notification-item.unread {
-    background: #f5f5f5;
-    font-weight: bold;
+
+.welcome-section h1 {
+    font-size: 2rem; /* Adjust the font size as needed */
+    font-weight: 600;
+    color: #333;
+    margin: 0; /* Remove any default margin */
 }
-.notification-item:last-child {
-    border-bottom: none;
-}
-.notification-actions a {
-    margin-left: 10px;
-    text-decoration: none;
+
+.welcome-section p {
+    font-size: 1rem;
     color: #666;
+    margin-top: 10px; /* Space between heading and paragraph */
 }
-.notification-actions a:hover {
-    color: #000;
-}
-.read-all {
-    padding: 10px;
-    text-align: center;
-    border-top: 1px solid #eee;
-    background: #f9f9f9;
-}
-.read-all a {
-    text-decoration: none;
-    color: #007bff;
-    margin: 0 10px;
-}
-.read-all a:hover {
-    text-decoration: underline;
-}
-.profile {
-    position: relative;
-    cursor: pointer;
+
+.search-container {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     display: flex;
     align-items: center;
+    padding: 10px 20px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: 20px; /* Adjust for spacing */
 }
-.profile-photo {
+
+.search-container input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    flex: 1;
+    padding: 10px;
+    color: #333;
+}
+
+.search-container input::placeholder {
+    color: #c2c2c2;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative; /* For positioning the dropdown */
+    cursor: pointer; /* Indicate it's clickable */
+}
+
+.profile-name {
+    font-size: 14px;
+    color: #888;
+}
+
+.profile-pic {
+    position: relative;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    overflow: hidden;
-    margin-left: 15px;
+    background: #ccc;
 }
-.profile-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+
+.status-dot {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 13px; /* Larger dot, similar to Messenger */
+    height: 13px;
+    border: 3px solid #fff; /* Thicker white border */
+    border-radius: 50%;
+    background: #00ff00; /* Messenger-like green for online */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease; /* Smooth color transition */
 }
+
+.status-dot.offline {
+    background: #e63946; /* Red for offline */
+}
+
+/* Profile Dropdown Styling */
 .profile-dropdown {
     display: none;
     position: absolute;
+    top: 60px; /* Adjusted to position below the profile */
     right: 0;
-    top: 50px;
-    background: white;
-    min-width: 200px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    border-radius: 5px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Softer shadow as in the image */
     z-index: 1000;
+    width: 250px; /* Fixed width to match the image */
+    overflow: hidden; /* Ensure rounded corners are respected */
 }
-/* Removed hover effect */
+
 .profile-info {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    text-align: center;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #e0e0e0; /* Light border as in the image */
 }
-.profile-info p {
+
+.profile-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.profile-info-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-info-text p {
     margin: 0;
-    color: #333;
+    font-size: 16px; /* Slightly larger font for the name */
+    font-weight: 600; /* Bold name as in the image */
+    color: #1a1a1a; /* Darker color for the name */
 }
-.profile-info small {
-    color: #777;
+
+.profile-info-text small {
+    font-size: 12px;
+    color: #666; /* Lighter gray for the role */
+    margin-top: 2px;
 }
+
 .profile-actions {
-    padding: 5px 0;
+    padding: 0;
 }
+
 .profile-actions a {
     display: flex;
     align-items: center;
-    padding: 8px 15px;
+    padding: 12px 15px;
+    color: #333;
     text-decoration: none;
-    color: #666;
+    font-size: 14px;
+    font-weight: 500; /* Medium weight for the link */
 }
+
 .profile-actions a:hover {
-    background: #f5f5f5;
-    color: #000;
+    background: #f5f5f5; /* Light gray hover effect */
 }
-.profile-actions span {
+
+.profile-actions .material-icons-sharp {
     margin-right: 10px;
+    font-size: 20px; /* Slightly larger icon */
+    color: #666; /* Gray color for the icon */
 }
 
 /* Png Image for dashboard icon */
 .sidebar img {
-width: 24px; /* Adjust size as needed */
-height: 24px;
-margin-right: 10px; /* Spacing between icon and text */
-vertical-align: middle;
+    width: 24px; /* Adjust size as needed */
+    height: 24px;
+    margin-right: 10px; /* Spacing between icon and text */
+    vertical-align: middle;
 }
