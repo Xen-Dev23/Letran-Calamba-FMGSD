@@ -169,8 +169,6 @@ $update_stmt->execute();
                 profileDropdown.style.display = 'none';
             }
         });
-
-        const document style;
     </script>
 </body>
 </html>
