@@ -9,8 +9,8 @@ $timeout_duration = 1800;
 if (isset($_SESSION['user_id'])) {
     // Check for session timeout
     if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > $timeout_duration) {
-        // Session has expired, update is_online and log the user out
-        $update_sql = "UPDATE users SET is_online = 0 WHERE id = ?";
+        // Session has expired, update is_online and status
+        $update_sql = "UPDATE users SET is_online = 0, status = 'offline' WHERE id = ?";
         $update_stmt = $conn->prepare($update_sql);
         $update_stmt->bind_param("i", $_SESSION['user_id']);
         $update_stmt->execute();
@@ -45,8 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $result->fetch_assoc();
 
     if ($user && password_verify($password, $user['password'])) {
-        // Update last_login and is_online fields
-        $update_sql = "UPDATE users SET last_login = NOW(), is_online = 1 WHERE id = ?";
+        // Update last_login, is_online, and status fields
+        $update_sql = "UPDATE users SET last_login = NOW(), is_online = 1, status = 'online' WHERE id = ?";
         $update_stmt = $conn->prepare($update_sql);
         $update_stmt->bind_param("i", $user['id']);
         $update_stmt->execute();
@@ -73,6 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/png" href="assets/images/favicon.ico">
     <link rel="stylesheet" href="./css/login.css">
-    <title>EHS - Log In</title>
+    <title>EHS | Log In</title>
     <style>
         .password-container {
             position: relative;
