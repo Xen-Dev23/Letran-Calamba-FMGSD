@@ -60,7 +60,7 @@ $update_stmt->execute();
                     <img src="../assets/icons/dashboard.png" alt="Dashboard Icon">
                     <h3>Dashboard</h3>
                 </a>
-                <a href="user_modules.php">
+                <a href="user_modules_list.php">
                     <img src="../assets/icons/modules.png" alt="Modules Icon">
                     <h3>Modules</h3>
                 </a>

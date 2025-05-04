@@ -1,3 +1,81 @@
+/* ADDED BY LEK */
+
+#questions-container {
+    width: 100%;
+}
+
+#questions-container .question-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2x;
+}
+
+#questions-container textarea {
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 6px;
+}
+
+#correct-option-slc {
+    border: 1px solid gray;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+#questions-container input {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 6px;
+    border: 1px solid gray;
+}
+
+#add-question-btn {
+    background-color: rgb(19, 83, 109);
+    width: 10rem;
+    padding: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    color: white;
+}
+
+.pages {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* 16px vertical space between items */
+}
+
+.button-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-button {
+    width: 8rem;
+    padding: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    color: white;
+}
+
+#next-page-btn {
+    background-color: rgb(19, 83, 109);
+}
+
+#previous-page-btn {
+    background-color: #a1a1a1;
+}
+
+.hidden {
+    display: none;
+}
+
+/* END */
+
 .upload-container {
     margin: 2rem;
     max-width: 800px;

@@ -1,4 +1,25 @@
 /* Admin Video List CSS */
+
+/* lek.php CSS */
+
+.add-new-module {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.add-new-module-btn {
+    color: white;
+    background-color: #7C3AED;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+}
+
+/* end */
+
+
+
         .video-container {
             margin: 2rem;
             max-width: 1200px;
