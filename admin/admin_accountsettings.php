@@ -204,9 +204,9 @@ $profile_pic = isset($user['profile_picture']) && !empty($user['profile_picture'
                     <img src="../assets/icons/video_library.png" alt="Videos Icon">
                     <h3>Training Videos</h3>
                 </a>
-                <a href="admin_video_list.php">
+                <a href="module_list.php">
                     <img src="../assets/icons/video_library.png" alt="Videos Icon">
-                    <h3>Video List</h3>
+                    <h3>Module List</h3>
                 </a>
                 <a href="admin_accountsettings.php" class="active">
                     <img src="../assets/icons/settings.png" alt="Settings Icon">

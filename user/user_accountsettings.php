@@ -97,11 +97,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!file_exists($target_dir)) {
             mkdir($target_dir, 0777, true);
         }
-        
+
         $file_name = uniqid() . '_' . basename($_FILES["profile_picture"]["name"]);
         $target_file = $target_dir . $file_name;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        
+
         // Check if image file is an actual image
         $check = getimagesize($_FILES["profile_picture"]["tmp_name"]);
         if ($check !== false) {
@@ -111,12 +111,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (in_array($imageFileType, ['jpg', 'jpeg', 'png', 'gif'])) {
                     if (move_uploaded_file($_FILES["profile_picture"]["tmp_name"], $target_file)) {
                         // Delete old profile picture if it exists and isn't the default
-                        if (!empty($user['profile_picture']) && 
+                        if (
+                            !empty($user['profile_picture']) &&
                             $user['profile_picture'] != '../assets/images/profile-placeholder.png' &&
-                            file_exists($user['profile_picture'])) {
+                            file_exists($user['profile_picture'])
+                        ) {
                             unlink($user['profile_picture']);
                         }
-                        
+
                         $update_fields[] = "profile_picture = ?";
                         $update_params[] = $target_file;
                         $update_types .= "s";
@@ -141,13 +143,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $update_query = "UPDATE users SET " . implode(", ", $update_fields) . " WHERE id = ?";
         $update_params[] = $user_id;
         $update_types .= "i";
-        
+
         $update_stmt = $conn->prepare($update_query);
         $update_stmt->bind_param($update_types, ...$update_params);
         $update_stmt->execute();
-        
+
         $success_message = "Profile updated successfully!";
-        
+
         // Refresh user data
         $query = "SELECT fullname, email, profile_picture, password FROM users WHERE id = ?";
         $stmt = $conn->prepare($query);
@@ -168,6 +170,7 @@ $profile_pic = isset($user['profile_picture']) && !empty($user['profile_picture'
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -177,6 +180,7 @@ $profile_pic = isset($user['profile_picture']) && !empty($user['profile_picture'
     <link rel="icon" type="image/png" href="../assets/images/favicon.ico">
     <title>Account Settings</title>
 </head>
+
 <body>
     <div class="container">
         <!-- Sidebar Section -->
@@ -192,23 +196,23 @@ $profile_pic = isset($user['profile_picture']) && !empty($user['profile_picture'
             </div>
 
             <div class="sidebar">
-                <a href="user_dashboard.php">
+                <a href="user_dashboard.php" class="active">
                     <img src="../assets/icons/dashboard.png" alt="Dashboard Icon">
                     <h3>Dashboard</h3>
                 </a>
-                <a href="user_modules.php">
-                    <img src="../assets/icons/modules.png" alt="Scoreboard Icon">
+                <a href="user_modules_list.php">
+                    <img src="../assets/icons/modules.png" alt="Modules Icon">
                     <h3>Modules</h3>
                 </a>
                 <a href="user_quiz.php">
-                    <img src="../assets/icons/quiz.png" alt="Scoreboard Icon">
+                    <img src="../assets/icons/quiz.png" alt="Quiz Icon">
                     <h3>Take Quiz</h3>
                 </a>
                 <a href="user_result.php">
-                    <img src="../assets/icons/assessment.png" alt="Scoreboard Icon">
+                    <img src="../assets/icons/assessment.png" alt="Results Icon">
                     <h3>View Results</h3>
                 </a>
-                <a href="user_accountsettings.php" class="active">
+                <a href="user_accountsettings.php">
                     <img src="../assets/icons/settings.png" alt="Settings Icon">
                     <h3>Account Settings</h3>
                 </a>
@@ -230,11 +234,11 @@ $profile_pic = isset($user['profile_picture']) && !empty($user['profile_picture'
                 <?php if (isset($error_message)): ?>
                     <div class="message error"><?php echo $error_message; ?></div>
                 <?php endif; ?>
-                
+
                 <div class="profile-picture">
                     <img src="<?php echo $profile_pic; ?>" alt="Profile Picture">
                 </div>
-                
+
                 <form method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="profile_picture">Change Profile Picture</label>
@@ -255,24 +259,24 @@ $profile_pic = isset($user['profile_picture']) && !empty($user['profile_picture'
                         <div class="form-group">
                             <label for="current_password">Current Password</label>
                             <div class="password-container">
-                            <input type="password" name="current_password" id="current_password" placeholder="Enter current password">
-                            <img src="../assets/icons/eye-off.png" alt="Show/Hide Password" class="toggle-password">
+                                <input type="password" name="current_password" id="current_password" placeholder="Enter current password">
+                                <img src="../assets/icons/eye-off.png" alt="Show/Hide Password" class="toggle-password">
+                            </div>
                         </div>
-                    </div>
                         <div class="form-group">
                             <label for="new_password">New Password</label>
                             <div class="password-container">
-                            <input type="password" name="new_password" id="new_password" placeholder="Enter new password">
-                            <img src="../assets/icons/eye-off.png" alt="Show/Hide Password" class="toggle-password">
+                                <input type="password" name="new_password" id="new_password" placeholder="Enter new password">
+                                <img src="../assets/icons/eye-off.png" alt="Show/Hide Password" class="toggle-password">
+                            </div>
                         </div>
-                    </div>
                         <div class="form-group">
                             <label for="confirm_password">Confirm New Password</label>
                             <div class="password-container">
-                            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm new password">
-                            <img src="../assets/icons/eye-off.png" alt="Show/Hide Password" class="toggle-password">
+                                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm new password">
+                                <img src="../assets/icons/eye-off.png" alt="Show/Hide Password" class="toggle-password">
+                            </div>
                         </div>
-                    </div>
                     </div>
 
                     <div class="form-group">
@@ -315,7 +319,7 @@ $profile_pic = isset($user['profile_picture']) && !empty($user['profile_picture'
         // Sidebar toggle
         const closeBtn = document.getElementById('close-btn');
         const sidebar = document.querySelector('aside');
-        
+
         closeBtn.addEventListener('click', () => {
             sidebar.classList.toggle('open');
         });
@@ -354,21 +358,22 @@ $profile_pic = isset($user['profile_picture']) && !empty($user['profile_picture'
         });
 
         // Toggle password visibility
-    document.addEventListener('DOMContentLoaded', function() {
-    const togglePasswordElements = document.querySelectorAll('.toggle-password');
-    
-    togglePasswordElements.forEach(toggle => {
-        toggle.addEventListener('click', function() {
-            const passwordInput = this.previousElementSibling;
-            const isPassword = passwordInput.type === 'password';
-            
-            passwordInput.type = isPassword ? 'text' : 'password';
-            this.src = isPassword ? 
-                '../assets/icons/eye-on.png' : 
-                '../assets/icons/eye-off.png';
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePasswordElements = document.querySelectorAll('.toggle-password');
+
+            togglePasswordElements.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const passwordInput = this.previousElementSibling;
+                    const isPassword = passwordInput.type === 'password';
+
+                    passwordInput.type = isPassword ? 'text' : 'password';
+                    this.src = isPassword ?
+                        '../assets/icons/eye-on.png' :
+                        '../assets/icons/eye-off.png';
+                });
+            });
         });
-    });
-});
-</script>
+    </script>
 </body>
+
 </html>

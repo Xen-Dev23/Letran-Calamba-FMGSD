@@ -8,41 +8,44 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== "Admin") {
     exit();
 }
 
-class VideoManager {
+class VideoManager
+{
     private $conn;
-    
-    public function __construct($connection) {
+
+    public function __construct($connection)
+    {
         $this->conn = $connection;
     }
-    
-    public function deleteVideo($id) {
+
+    public function deleteVideo($id)
+    {
         $sql = "SELECT file_path, thumbnail FROM training_videos WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        
+
         if ($video = $result->fetch_assoc()) {
             $file_path = $video['file_path'];
             $thumbnail = $video['thumbnail'];
-            
+
             if (!file_exists($file_path)) {
                 return ['success' => false, 'message' => 'Video file does not exist: ' . $file_path];
             }
-            
+
             if (!is_writable($file_path)) {
                 return ['success' => false, 'message' => 'Permission denied: Cannot delete the video file ' . $file_path];
             }
-            
+
             if (unlink($file_path)) {
                 if ($thumbnail && file_exists($thumbnail)) {
                     unlink($thumbnail);
                 }
-                
+
                 $sql = "DELETE FROM training_videos WHERE id = ?";
                 $stmt = $this->conn->prepare($sql);
                 $stmt->bind_param("i", $id);
-                
+
                 if ($stmt->execute()) {
                     return ['success' => true, 'message' => 'Video deleted successfully!'];
                 } else {
@@ -54,13 +57,15 @@ class VideoManager {
         }
         return ['success' => false, 'message' => 'Video not found in the database.'];
     }
-    
-    public function getAllVideos() {
+
+    public function getAllVideos()
+    {
         $sql = "SELECT * FROM training_videos ORDER BY created_at ASC"; // Changed to ASC for oldest first
         return $this->conn->query($sql);
     }
-    
-    public function updateVideo($id, $title, $description, $category, $newThumbnail = null, $newVideoFile = null) {
+
+    public function updateVideo($id, $title, $description, $category, $newThumbnail = null, $newVideoFile = null)
+    {
         $currentVideo = $this->getVideoById($id);
         if (!$currentVideo) {
             return ['success' => false, 'message' => 'Video not found.'];
@@ -111,8 +116,9 @@ class VideoManager {
             return ['success' => false, 'message' => 'Failed to update video: ' . $this->conn->error];
         }
     }
-    
-    public function getVideoById($id) {
+
+    public function getVideoById($id)
+    {
         $sql = "SELECT * FROM training_videos WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $id);
@@ -144,6 +150,7 @@ $videos = $videoManager->getAllVideos();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -153,6 +160,7 @@ $videos = $videoManager->getAllVideos();
     <link rel="icon" type="image/png" href="../assets/images/favicon.ico">
     <title>Admin Dashboard - Video List</title>
 </head>
+
 <body>
     <div class="container">
         <aside>
@@ -191,9 +199,9 @@ $videos = $videoManager->getAllVideos();
                     <img src="../assets/icons/video_library.png" alt="Videos Icon">
                     <h3>Training Videos</h3>
                 </a>
-                <a href="admin_video_list.php" class="active">
+                <a href="module_list.php" class="active">
                     <img src="../assets/icons/video_library.png" alt="Videos Icon">
-                    <h3>Video List</h3>
+                    <h3>Module List</h3>
                 </a>
                 <a href="admin_accountsettings.php">
                     <img src="../assets/icons/settings.png" alt="Settings Icon">
@@ -234,17 +242,22 @@ $videos = $videoManager->getAllVideos();
                     </div>
                 </div>
 
-                <h2>Uploaded Videos</h2>
+                <div class="add-new-module">
+                    <h2>Uploaded Videos</h2>
+
+                    <a class="add-new-module-btn" href="admin_add_new_module.php">&#10010; Add New Module</a>
+                </div>
                 <?php if ($videos->num_rows > 0): ?>
                     <div class="video-grid" id="video-grid">
-                        <?php while ($video = $videos->fetch_assoc()): 
+                        <?php
+                            while ($video = $videos->fetch_assoc()):
                             $category = isset($video['category']) ? htmlspecialchars($video['category']) : 'Uncategorized';
                             $duration = isset($video['duration']) ? htmlspecialchars($video['duration']) : 'N/A';
                             $thumbnail = isset($video['thumbnail']) ? htmlspecialchars($video['thumbnail']) : '../assets/images/default_thumbnail.jpg';
                             $title = htmlspecialchars($video['title'] ?? 'Untitled');
                             $description = htmlspecialchars($video['description'] ?? 'No description');
                         ?>
-                            <div class="video-card" data-category="<?php echo $category; ?>" data-title="<?php echo $title; ?>" data-description="<?php echo $description; ?>">
+                            <div class="video-card" data-category="<?= $category; ?>" data-title="<?php echo $title; ?>" data-description="<?= $description; ?>">
                                 <div class="video-card-thumbnail">
                                     <img src="<?php echo $thumbnail; ?>" alt="Video Thumbnail">
                                     <span class="duration"><?php echo $duration; ?></span>
@@ -265,8 +278,8 @@ $videos = $videoManager->getAllVideos();
                                         <button class="btn btn-edit" onclick='openEditModal(<?php echo json_encode($video); ?>)'>
                                             <span class="material-icons-sharp">edit</span> Edit
                                         </button>
-                                        <a href="?delete_id=<?php echo $video['id']; ?>" 
-                                           onclick="return confirm('Are you sure you want to delete this video?')" class="btn btn-delete">
+                                        <a href="?delete_id=<?php echo $video['id']; ?>"
+                                            onclick="return confirm('Are you sure you want to delete this video?')" class="btn btn-delete">
                                             <span class="material-icons-sharp">delete</span> Delete
                                         </a>
                                     </div>
@@ -342,7 +355,7 @@ $videos = $videoManager->getAllVideos();
             const modal = document.getElementById('videoModal');
             const video = document.getElementById('modalVideo');
             const source = video.getElementsByTagName('source')[0];
-            
+
             source.src = videoUrl;
             video.load();
             modal.style.display = 'flex';
@@ -351,7 +364,7 @@ $videos = $videoManager->getAllVideos();
         function closeModal() {
             const modal = document.getElementById('videoModal');
             const video = document.getElementById('modalVideo');
-            
+
             video.pause();
             video.currentTime = 0;
             modal.style.display = 'none';
@@ -441,7 +454,7 @@ $videos = $videoManager->getAllVideos();
 
         document.addEventListener('DOMContentLoaded', function() {
             filterVideos();
-            
+
             const videoCards = document.querySelectorAll('.video-card');
             videoCards.forEach(card => {
                 const videoUrl = card.querySelector('.btn-play').href;
@@ -463,4 +476,5 @@ $videos = $videoManager->getAllVideos();
         });
     </script>
 </body>
+
 </html>

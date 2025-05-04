@@ -1,0 +1,29 @@
+.add-new-module {
+  margin-bottom: 1rem;
+}
+
+.lesson-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.lesson-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #e5e5e5;
+  padding: 1rem;
+  width: 100%;
+}
+
+.lesson-card:hover {
+  color: white;
+  font-weight: 600;
+  background-color: #7C3AED;
+  font-size: 1rem;
+}
