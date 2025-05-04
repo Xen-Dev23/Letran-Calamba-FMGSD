@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $user = "root";
-$pass = "gelo123";
+$pass = "";
 $dbname = "letran_system";
 
 $conn = new mysqli($host, $user, $pass, $dbname);
