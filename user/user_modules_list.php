@@ -81,16 +81,22 @@ $rowCount = count($modules);
             <span class="material-icons-sharp">search</span>
             <input type="text" id="video-search" placeholder="Search videos by title or description..." oninput="filterVideos()">
           </div>
-          <div class="filter-bar">
-            <label for="category-filter">Filter by Category:</label>
-            <select id="category-filter" onchange="filterVideos()">
-              <option value="all">All Categories</option>
-              <option value="Safety">Safety</option>
-              <option value="Environment">Environment</option>
-              <option value="Health">Health</option>
-              <option value="Certification">Certification</option>
-              <option value="Other">Other</option>
-            </select>
+          <div class="filter-bar-combined">
+            <div class="filter-item">
+              <label for="category-filter">Filter by Category:</label>
+              <select id="category-filter" onchange="filterVideos()">
+                <option value="all">All Categories</option>
+                <option value="Safety">Safety</option>
+                <option value="Environment">Environment</option>
+                <option value="Health">Health</option>
+                <option value="Certification">Certification</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="filter-item">
+              <label for="date-filter">Filter by Date:</label>
+              <input type="date" id="date-filter" onchange="filterVideos()">
+            </div>
           </div>
         </div>
 
@@ -137,17 +143,27 @@ $rowCount = count($modules);
     function filterVideos() {
       const searchInput = document.getElementById('video-search').value.trim().toLowerCase();
       const categoryFilter = document.getElementById('category-filter').value.toLowerCase();
+      const dateFilter = document.getElementById('date-filter').value; // format: yyyy-mm-dd
       const videoCards = document.querySelectorAll('.video-card');
 
       videoCards.forEach(card => {
         const title = (card.getAttribute('data-title') || '').toLowerCase();
         const description = (card.getAttribute('data-description') || '').toLowerCase();
         const category = (card.getAttribute('data-category') || 'uncategorized').toLowerCase();
+        const uploadedText = card.querySelector('.video-card-body small')?.textContent || '';
+        const uploadedDateMatch = uploadedText.match(/Uploaded: (.+)/);
+        let matchDate = true;
+
+        if (dateFilter && uploadedDateMatch) {
+          const uploadedDate = new Date(uploadedDateMatch[1]);
+          const uploadedDateStr = `${uploadedDate.getFullYear()}-${String(uploadedDate.getMonth() + 1).padStart(2, '0')}-${String(uploadedDate.getDate()).padStart(2, '0')}`;
+          matchDate = uploadedDateStr === dateFilter;
+        }
 
         const matchesSearch = title.includes(searchInput) || description.includes(searchInput);
         const matchesCategory = categoryFilter === 'all' || category === categoryFilter;
 
-        card.style.display = (matchesSearch && matchesCategory) ? '' : 'none';
+        card.style.display = (matchesSearch && matchesCategory && matchDate) ? '' : 'none';
       });
 
       const videoGrid = document.getElementById('video-grid');
@@ -157,7 +173,7 @@ $rowCount = count($modules);
       if (visibleCards.length === 0 && !noVideosMessage) {
         const message = document.createElement('div');
         message.className = 'no-videos';
-        message.innerHTML = '<p>No module match your search or filter.</p>';
+        message.innerHTML = '<p>No videos match your search or filter.</p>';
         videoGrid.insertAdjacentElement('afterend', message);
       } else if (visibleCards.length > 0 && noVideosMessage) {
         noVideosMessage.remove();
