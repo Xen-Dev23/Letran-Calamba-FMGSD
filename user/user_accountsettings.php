@@ -196,7 +196,7 @@ $profile_pic = isset($user['profile_picture']) && !empty($user['profile_picture'
             </div>
 
             <div class="sidebar">
-                <a href="user_dashboard.php" class="active">
+                <a href="user_dashboard.php">
                     <img src="../assets/icons/dashboard.png" alt="Dashboard Icon">
                     <h3>Dashboard</h3>
                 </a>
@@ -212,7 +212,7 @@ $profile_pic = isset($user['profile_picture']) && !empty($user['profile_picture'
                     <img src="../assets/icons/assessment.png" alt="Results Icon">
                     <h3>View Results</h3>
                 </a>
-                <a href="user_accountsettings.php">
+                <a href="user_accountsettings.php" class="active">
                     <img src="../assets/icons/settings.png" alt="Settings Icon">
                     <h3>Account Settings</h3>
                 </a>

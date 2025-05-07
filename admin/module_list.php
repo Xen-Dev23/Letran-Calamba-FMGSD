@@ -13,7 +13,6 @@ $stmt = $pdo->prepare("SELECT * FROM modules");
 $stmt->execute();
 $modules = $stmt->fetchAll();
 $rowCount = count($modules);
-
 ?>
 
 <!DOCTYPE html>
@@ -91,24 +90,30 @@ $rowCount = count($modules);
             <span class="material-icons-sharp">search</span>
             <input type="text" id="video-search" placeholder="Search videos by title or description..." oninput="filterVideos()">
           </div>
-          <div class="filter-bar">
-            <label for="category-filter">Filter by Category:</label>
-            <select id="category-filter" onchange="filterVideos()">
-              <option value="all">All Categories</option>
-              <option value="Safety">Safety</option>
-              <option value="Environment">Environment</option>
-              <option value="Health">Health</option>
-              <option value="Certification">Certification</option>
-              <option value="Other">Other</option>
-            </select>
+          <div class="filter-bar-combined">
+            <div class="filter-item">
+              <label for="category-filter">Filter by Category:</label>
+              <select id="category-filter" onchange="filterVideos()">
+                <option value="all">All Categories</option>
+                <option value="Safety">Safety</option>
+                <option value="Environment">Environment</option>
+                <option value="Health">Health</option>
+                <option value="Certification">Certification</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="filter-item">
+              <label for="date-filter">Filter by Date:</label>
+              <input type="date" id="date-filter" onchange="filterVideos()">
+            </div>
           </div>
         </div>
 
         <div class="add-new-module">
           <h2>Uploaded Modules</h2>
-
           <a class="add-new-module-btn" href="admin_add_new_module.php">&#10010; Add New Module</a>
         </div>
+
         <?php if ($rowCount > 0): ?>
           <div class="video-grid" id="video-grid">
             <?php
@@ -151,17 +156,27 @@ $rowCount = count($modules);
     function filterVideos() {
       const searchInput = document.getElementById('video-search').value.trim().toLowerCase();
       const categoryFilter = document.getElementById('category-filter').value.toLowerCase();
+      const dateFilter = document.getElementById('date-filter').value; // format: yyyy-mm-dd
       const videoCards = document.querySelectorAll('.video-card');
 
       videoCards.forEach(card => {
         const title = (card.getAttribute('data-title') || '').toLowerCase();
         const description = (card.getAttribute('data-description') || '').toLowerCase();
         const category = (card.getAttribute('data-category') || 'uncategorized').toLowerCase();
+        const uploadedText = card.querySelector('.video-card-body small')?.textContent || '';
+        const uploadedDateMatch = uploadedText.match(/Uploaded: (.+)/);
+        let matchDate = true;
+
+        if (dateFilter && uploadedDateMatch) {
+          const uploadedDate = new Date(uploadedDateMatch[1]);
+          const uploadedDateStr = `${uploadedDate.getFullYear()}-${String(uploadedDate.getMonth() + 1).padStart(2, '0')}-${String(uploadedDate.getDate()).padStart(2, '0')}`;
+          matchDate = uploadedDateStr === dateFilter;
+        }
 
         const matchesSearch = title.includes(searchInput) || description.includes(searchInput);
         const matchesCategory = categoryFilter === 'all' || category === categoryFilter;
 
-        card.style.display = (matchesSearch && matchesCategory) ? '' : 'none';
+        card.style.display = (matchesSearch && matchesCategory && matchDate) ? '' : 'none';
       });
 
       const videoGrid = document.getElementById('video-grid');
@@ -177,6 +192,29 @@ $rowCount = count($modules);
         noVideosMessage.remove();
       }
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      filterVideos();
+
+      const videoCards = document.querySelectorAll('.video-card');
+      videoCards.forEach(card => {
+        const videoUrl = card.querySelector('.btn-play').href;
+        const durationSpan = card.querySelector('.duration');
+
+        if (durationSpan.textContent === 'N/A') {
+          const video = document.createElement('video');
+          video.preload = 'metadata';
+          video.src = videoUrl;
+
+          video.onloadedmetadata = function() {
+            const duration = video.duration;
+            const minutes = Math.floor(duration / 60);
+            const seconds = Math.floor(duration % 60);
+            durationSpan.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+          };
+        }
+      });
+    });
 
     document.addEventListener('DOMContentLoaded', function() {
       filterVideos();
