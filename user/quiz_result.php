@@ -84,7 +84,7 @@ $quiz_result = $stmt->fetch(PDO::FETCH_ASSOC);
         <h1>QUIZ RESULT</h1>
 
         <div id="quiz-container" class="greetings-container">
-          <h1 class="greetings-title <?= $quiz['isPassed'] ? 'success' : 'failed' ?>"><?= $quiz_result['isPassed'] ? 'Congratulations' : 'Failed' ?></h1>
+          <h1 class="greetings-title <?= $quiz_result['isPassed'] ? 'success' : 'failed' ?>"><?= $quiz_result['isPassed'] ? 'Congratulations' : 'Failed' ?></h1>
           <h3 class="sub-message"><?= $quiz_result['isPassed'] ? 'You Passed' : 'Try Again' ?></h3>
           <h3 class="score-items"><?= $quiz_result['score'] ?> / <?= $quiz_result['totalItems'] ?></h3>
           <a href="user_dashboard.php">Go Back to DarshBoard</a>
