@@ -116,7 +116,7 @@ $rowCount = count($lessons);
                 <div class="lesson ">
                   Lesson <?= $lesson_count ?> - <?= $lesson['title'] ?>
                 </div>
-                <a href="lesson_edit.php?lesson_id=<?= $lesson['id'] ?>" class="edit-lesson-link">
+                <a href="lesson_edit.php?lesson_id=<?= $lesson['id'] ?>&module_id=<?= $module_id ?>" class="edit-lesson-link">
                   Edit
                 </a>
               </div>

@@ -1,0 +1,95 @@
+.edit-module {
+  margin-bottom: 1rem;
+}
+
+.lesson-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.lesson-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #e5e5e5;
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.module-title-link:hover {
+  text-decoration: underline;
+}
+
+.edit-lesson-link {
+  color: #7C3AED;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 1rem;
+}
+
+.edit-lesson-link:hover {
+  background-color: #7C3AED;
+  color: white;
+  border: 1px solid #7C3AED;
+}
+
+.edit-module-link:hover {
+  color: #7C3AED;
+  text-decoration: underline;
+  text-decoration-color: #7C3AED;
+}
+
+.quiz-container {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  border: 3px solid #7C3AED;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.quiz-container .quiz-question {
+  font-size: 1.5rem;
+  color: #7C3AED;
+  font-weight: 600;
+}
+
+.quiz-container .quiz-options {
+  font-size: 1rem;
+}
+
+.quiz-container .quiz-correct-answer {
+  font-size: 1rem;
+  color: #2c9b46;
+}
+
+.quiz-container .edit-link-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.quiz-container .edit-link {
+  padding: 0.5rem 1rem;
+  background-color: white;
+  color: #7C3AED;
+  font-weight: 600;
+  border-radius: 12px;
+  border: 1px solid #7C3AED;
+}
+
+.quiz-container .edit-link:hover {
+  background-color: #7C3AED;
+  color: white;
+}

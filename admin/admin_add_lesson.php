@@ -210,7 +210,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
           <div class="form-group">
             <label for="title">Video Title *</label>
-            <input type="text" id="title" name="title" placeholder="Enter Video Title" vvalue="<?= isset($errors['none']) ? '' : ($_POST['title'] ?? '') ?>">
+            <input type="text" id="title" name="title" placeholder="Enter Video Title" value="<?= isset($errors['none']) ? '' : ($_POST['title'] ?? '') ?>">
             <?php if (isset($errors['title'])) : ?>
               <p class="inputs-error-message"><?= $errors['title'] ?></p>
             <?php endif; ?>
