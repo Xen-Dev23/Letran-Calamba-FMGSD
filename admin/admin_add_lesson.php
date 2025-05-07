@@ -261,7 +261,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
           <div class="button-section">
             <button type="submit" id="add-new-module-btn" class="">
-              Add Module
+              Add Lesson
             </button>
           </div>
 

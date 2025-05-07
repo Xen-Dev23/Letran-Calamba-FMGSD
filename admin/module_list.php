@@ -66,9 +66,9 @@ $rowCount = count($modules);
           <img src="../assets/icons/video_library.png" alt="Videos Icon">
           <h3>Training Videos</h3>
         </a>
-        <a href="admin_video_list.php" class="active">
+        <a href="module_list.php" class="active">
           <img src="../assets/icons/video_library.png" alt="Videos Icon">
-          <h3>Video List</h3>
+          <h3>Module List</h3>
         </a>
         <a href="admin_accountsettings.php">
           <img src="../assets/icons/settings.png" alt="Settings Icon">
@@ -135,6 +135,7 @@ $rowCount = count($modules);
                   <div class="video-card-body">
                     <p><?php echo $description; ?></p>
                     <small>Uploaded: <?php echo date('M d, Y h:i A', strtotime($module['created_at'])); ?></small>
+                    
                   </div>
                 </div>
               </a>
