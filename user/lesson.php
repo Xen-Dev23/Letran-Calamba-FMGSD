@@ -15,9 +15,10 @@ $stmt->execute([':lesson_id' => $lesson_id]);
 $lesson = $stmt->fetch(PDO::FETCH_ASSOC);
 $rowCount = count($lesson);
 
-$quizStmt = $pdo->prepare("SELECT * FROM quizzes WHERE lesson_id = :lesson_id");
+$quizStmt = $pdo->prepare("SELECT * FROM quizzes WHERE lesson_id = :lesson_id AND status = 'active'");
 $quizStmt->execute([':lesson_id' => $lesson_id]);
 $questions = $quizStmt->fetchAll(PDO::FETCH_ASSOC);
+$quizItem = count($questions);
 
 $totalQuestions = count($questions);
 
@@ -109,68 +110,81 @@ shuffle($shuffleQuestions);
           </div>
         </div> -->
 
-        <!-- loaders -->
-        <div class="loader-wrapper">
-          <div class="loader"></div>
-        </div>
+
 
         <h2><?= $lesson['title'] ?></h2>
 
-        <div class="video-container">
-          <?php if ($rowCount > 0): ?>
-            <video id="lesson_video" controls>
-              <source src="<?= htmlspecialchars($lesson['video_url']) ?>" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          <?php else: ?>
-            <div class="no-lesson">
-              <p>No lesson uploaded yet for this module.</p>
-            </div>
-          <?php endif; ?>
-        </div>
+        <?php if ($quizItem > 0) : ?>
 
-        <div id="quiz-container" class="quiz-container hidden">
+          <!-- loaders -->
+          <div class="loader-wrapper">
+            <div class="loader"></div>
+          </div>
+          
+          <div class="video-container">
+            <?php if ($rowCount > 0): ?>
+              <video id="lesson_video" controls>
+                <source src="<?= htmlspecialchars($lesson['video_url']) ?>" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            <?php else: ?>
+              <div class="no-lesson">
+                <p>No lesson uploaded yet for this module.</p>
+              </div>
+            <?php endif; ?>
+          </div>
+
+          <div id="quiz-container" class="quiz-container hidden">
 
             <h3 class="total-no-of-questions"><?= $totalQuestions ?> Questions</h3>
 
-          <form action="handle_quiz_submit.php" method="POST" id="quiz-form" class="">
-            <input type="hidden" name="lesson_id" value="<?= $lesson_id ?>">
+            <form action="handle_quiz_submit.php" method="POST" id="quiz-form" class="">
+              <input type="hidden" name="lesson_id" value="<?= $lesson_id ?>">
 
-            <?php foreach ($shuffleQuestions as $index => $question) : ?>
-              <div class="questions-container">
-                <p class="question"><?= ($index + 1) . '. ' . $question['question'] ?></p>
-                <?php foreach (['A', 'B', 'C', 'D'] as $letter) : ?>
-                  <label class="option">
-                    <input type="radio" name="answers[<?= $question['id'] ?>]" value="<?= $letter ?>">
-                    <?= $letter ?>. <?= ($question["option_" . strtolower($letter)]) ?>
-                  </label>
-                <?php endforeach; ?>
-              </div>
-            <?php endforeach; ?>
+              <?php foreach ($shuffleQuestions as $index => $question) : ?>
+                <div class="questions-container">
+                  <p class="question"><?= ($index + 1) . '. ' . $question['question'] ?></p>
+                  <?php foreach (['A', 'B', 'C', 'D'] as $letter) : ?>
+                    <label class="option">
+                      <input type="radio" name="answers[<?= $question['id'] ?>]" value="<?= $letter ?>">
+                      <?= $letter ?>. <?= ($question["option_" . strtolower($letter)]) ?>
+                    </label>
+                  <?php endforeach; ?>
+                </div>
+              <?php endforeach; ?>
 
-            <button type="button" id="fake-submit-button">
-              Submit
-            </button>
+              <?php if ($quizItem > 0) : ?>
+                <button type="button" id="fake-submit-button">
+                  Submit
+                </button>
+              <?php endif; ?>
 
-            <!-- Modal -->
-            <div id="confirmation-modal" class="modal hidden">
-              <div class="modal-content">
-                <p class="modal-text">Are you sure you want to submit your answers?</p>
-                <div class="modal-buttons">
-                  <button type="submit" form="quiz-form">Yes, Submit</button>
-                  <button type="button" id="cancel-modal">Cancel</button>
+              <!-- Modal -->
+              <div id="confirmation-modal" class="modal hidden">
+                <div class="modal-content">
+                  <p class="modal-text">Are you sure you want to submit your answers?</p>
+                  <div class="modal-buttons">
+                    <button type="submit" form="quiz-form">Yes, Submit</button>
+                    <button type="button" id="cancel-modal">Cancel</button>
+                  </div>
                 </div>
               </div>
-            </div>
 
 
-          </form>
-        </div>
+            </form>
+          </div>
+
+          <div id="waiting" class="text-center font-semibold text-gray-700 mt-4">
+            Please watch the video. Quiz will appear after video ends.
+          </div>
+        <?php else : ?>
+          <div class="video-container">
+            <p>This lesson doesn't have any quiz.</p>
+          </div>
+        <?php endif; ?>
       </div>
 
-      <div id="waiting" class="text-center font-semibold text-gray-700 mt-4">
-        Please watch the video. Quiz will appear after video ends.
-      </div>
+
     </main>
   </div>
 

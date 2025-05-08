@@ -2,6 +2,26 @@
   margin-bottom: 1rem;
 }
 
+.add-lesson {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.add-lesson-link {
+  border: 1px solid #e5e5e5;
+  color: #7C3AED;
+  padding: 0.5rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+}
+
+.add-lesson-link:hover {
+  border: 1px solid #7C3AED;
+  color: white;
+  background-color: #7C3AED;
+}
+
 .lesson-container {
   display: flex;
   flex-direction: column;

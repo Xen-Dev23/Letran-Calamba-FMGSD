@@ -9,6 +9,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== "User") {
   exit();
 }
 
+
+$user_id = $_SESSION['user_id'];
 $lesson_count = 1;
 
 $module_id = $_GET['module_id'];
@@ -16,6 +18,7 @@ $lessonStmt = $pdo->prepare("SELECT * FROM lessons WHERE module_id = :module_id 
 $lessonStmt->execute([':module_id' => $module_id]);
 $lessons = $lessonStmt->fetchAll(PDO::FETCH_ASSOC);
 $rowCount = count($lessons);
+
 
 // dd($rowCount);
 
@@ -127,11 +130,27 @@ $rowCount = count($lessons);
           <div class="lesson-container">
             <?php foreach ($lessons as $lesson): ?>
 
-              <a href="lesson.php?lesson_id=<?= $lesson['id'] ?>" class="lesson-card">
-                <div class="lesson">
-                  Lesson <?= $lesson_count ?> - <?= $lesson['title'] ?>
-                </div>
-              </a>
+              <?php
+              $watchedLessonStmt = $pdo->prepare("SELECT * FROM quiz_results WHERE user_id = :user_id AND id = :lesson_id");
+              $watchedLessonStmt->execute([':user_id' => $user_id, ':lesson_id' => $lesson['id']]);
+              $watched_lesson = $watchedLessonStmt->fetch(PDO::FETCH_ASSOC);
+              ?>
+
+              <?php if ($watched_lesson && !empty($watched_lesson['isWatched']) && $watched_lesson['isWatched'] == 1): ?>
+                <a href="lesson.php?lesson_id=<?= $lesson['id'] ?>" class="watched-lesson-card">
+                  <div class="lesson">
+                    Lesson <?= $lesson_count ?> - <?= $lesson['title'] ?>
+                  </div>
+                </a>
+              <?php else : ?>
+                <a href="lesson.php?lesson_id=<?= $lesson['id'] ?>" class="lesson-card">
+                  <div class="lesson">
+                    Lesson <?= $lesson_count ?> - <?= $lesson['title'] ?>
+                  </div>
+                </a>
+              <?php endif; ?>
+
+
               <?php $lesson_count++ ?>
             <?php endforeach; ?>
           </div>

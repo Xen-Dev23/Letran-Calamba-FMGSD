@@ -1,0 +1,46 @@
+.questions-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.questions-container input, textarea, select {
+  border: 1px solid gray;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+#update-quiz-btn {
+  padding: 1rem;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #7C3AED;
+  background-color: white;
+  color: #7C3AED;
+  cursor: pointer;
+}
+
+#update-quiz-btn:hover {
+  background-color: #7C3AED;
+  color: white;
+}
+
+.questions-container .question-choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.error-message {
+  font-size: 1rem;
+  color: rgb(148, 14, 14);
+}
+
+.select-section{
+  display: flex;
+  justify-content: space-between;
+}

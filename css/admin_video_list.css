@@ -28,7 +28,7 @@
 
         .video-container {
             margin: 2rem;
-            max-width: 1200px;
+            max-width: 100%;
         }
 
         .video-list {
@@ -36,7 +36,7 @@
             padding: 2rem;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            width: 400%;
+            width: 100%;
             max-width: 1300px;
             margin: 0 auto;
         }
