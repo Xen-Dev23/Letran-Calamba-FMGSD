@@ -93,3 +93,8 @@
   background-color: #7C3AED;
   color: white;
 }
+
+.success-message {
+  font-size: 1rem;
+  color: #2c9b46;
+}

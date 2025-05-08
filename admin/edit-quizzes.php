@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require '../includes/db.php';
 require '../includes/functions.php';
 
@@ -96,11 +96,16 @@ $itemNumber = 1;
       <div class="video-list">
         <h1>QUIZ LIST</h1>
 
+        <?php if(isset($_SESSION['success_message'])) : ?>
+          <p class="success-message"><?= $_SESSION['success_message'] ?></p>
+          <?php unset($_SESSION['success_message']); ?>
+        <?php endif; ?>
+
         <?php foreach ($quizzes as $quiz) : ?>
           <div class="quiz-container">
             <div class="edit-link-container">
               <p class="quiz-question"><?= $itemNumber ?>. <?= $quiz['question'] ?></p>
-              <a href="update-quiz.php?quiz_id=<?= $quiz['id'] ?>" class="edit-link">edit</a>
+              <a href="update-quiz.php?quiz_id=<?= $quiz['id'] ?>&lesson_id=<?= $lesson_id ?>" class="edit-link">edit</a>
             </div>
             <div class="quiz-options">
               <p class="optionA">A. <?= $quiz['option_a'] ?></p>

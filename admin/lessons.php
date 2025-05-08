@@ -102,18 +102,21 @@ $rowCount = count($lessons);
         </div>
 
         <div class="edit-module">
-          <h2>
-            <a href="module_edit.php?module_id=<?= $module['id'] ?>" class="edit-module-link"> 
-              <?= $module['title'] ?>
-            </a>
-          </h2>
+          <div class="add-lesson">
+            <h2>
+              <a href="module_edit.php?module_id=<?= $module['id'] ?>" class="edit-module-link">
+                <?= $module['title'] ?>
+              </a>
+            </h2>
+            <a href="admin_add_lesson.php?module_id=<?= $module_id ?>" class="add-lesson-link">Add Lesson</a>
+          </div>
         </div>
         <?php if ($rowCount > 0): ?>
           <div class="lesson-container">
             <?php foreach ($lessons as $lesson): ?>
 
               <div class="lesson-card">
-                <div class="lesson ">
+                <div class="lesson">
                   Lesson <?= $lesson_count ?> - <?= $lesson['title'] ?>
                 </div>
                 <a href="lesson_edit.php?lesson_id=<?= $lesson['id'] ?>&module_id=<?= $module_id ?>" class="edit-lesson-link">
