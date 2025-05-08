@@ -9,6 +9,19 @@
     width: 100%;
 }
 
+.filter-bar-combined {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: end;
+}
+
+.filter-bar-combined input, select {
+    border: 1px solid gray;
+    padding: 0.3rem;
+    border-radius: 0.2rem;
+}
+
 .add-new-module-btn {
     color: white;
     background-color: #7C3AED;

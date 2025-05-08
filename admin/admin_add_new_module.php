@@ -119,9 +119,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <img src="../assets/icons/video_library.png" alt="Videos Icon">
           <h3>Training Videos</h3>
         </a>
-        <a href="admin_video_list.php" class="active">
+        <a href="module_list.php" class="active">
           <img src="../assets/icons/video_library.png" alt="Videos Icon">
-          <h3>Video List</h3>
+          <h3>Module List</h3>
         </a>
         <a href="admin_accountsettings.php">
           <img src="../assets/icons/settings.png" alt="Settings Icon">
@@ -194,6 +194,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <script src="../js/admin.js"></script>
   <script>
+    const addModuleBtn = document.getElementById('add-new-module-btn');
+    addModuleBtn.addEventListener('click', ()=> {
+      addModuleBtn.innerText = 'Please Wait...';
+      
+    })
   </script>
 </body>
 

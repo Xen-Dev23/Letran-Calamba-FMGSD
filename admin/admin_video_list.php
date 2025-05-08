@@ -250,7 +250,7 @@ $videos = $videoManager->getAllVideos();
                 <?php if ($videos->num_rows > 0): ?>
                     <div class="video-grid" id="video-grid">
                         <?php
-                            while ($video = $videos->fetch_assoc()):
+                        while ($video = $videos->fetch_assoc()):
                             $category = isset($video['category']) ? htmlspecialchars($video['category']) : 'Uncategorized';
                             $duration = isset($video['duration']) ? htmlspecialchars($video['duration']) : 'N/A';
                             $thumbnail = isset($video['thumbnail']) ? htmlspecialchars($video['thumbnail']) : '../assets/images/default_thumbnail.jpg';
