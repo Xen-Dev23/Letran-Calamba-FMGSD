@@ -144,7 +144,6 @@ $rowCount = count($modules);
         <?php else: ?>
           <div class="no-videos">
             <p>No module uploaded yet.</p>
-            <a href="admin_video_upload.php" class="btn btn-upload">Upload a Video</a>
           </div>
         <?php endif; ?>
       </div>
