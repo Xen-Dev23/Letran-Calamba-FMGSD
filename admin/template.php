@@ -48,10 +48,6 @@ include '../db/db.php';
                     <img src="../assets/icons/monitoring.png" alt="Monitoring Icon">
                     <h3>Monitoring</h3>
                 </a>
-                <a href="admin_video_upload.php">
-                    <img src="../assets/icons/video_library.png" alt="Videos Icon">
-                    <h3>Training Videos</h3>
-                </a>
                 <a href="admin_video_list.php" class="active">
                     <img src="../assets/icons/video_library.png" alt="Videos Icon">
                     <h3>Video List</h3>

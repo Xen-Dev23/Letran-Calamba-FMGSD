@@ -60,7 +60,7 @@ $rowCount = count($modules);
         </a>
         <a href="module_list.php" class="active">
           <img src="../assets/icons/video_library.png" alt="Videos Icon">
-          <h3>Modules</h3>
+          <h3>Module List</h3>
         </a>
         <a href="../logout.php">
           <img src="../assets/icons/logout.png" alt="Logout Icon">

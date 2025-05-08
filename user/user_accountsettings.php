@@ -204,17 +204,9 @@ $profile_pic = isset($user['profile_picture']) && !empty($user['profile_picture'
                     <img src="../assets/icons/modules.png" alt="Modules Icon">
                     <h3>Modules</h3>
                 </a>
-                <a href="user_quiz.php">
-                    <img src="../assets/icons/quiz.png" alt="Quiz Icon">
-                    <h3>Take Quiz</h3>
-                </a>
                 <a href="user_result.php">
                     <img src="../assets/icons/assessment.png" alt="Results Icon">
                     <h3>View Results</h3>
-                </a>
-                <a href="user_accountsettings.php" class="active">
-                    <img src="../assets/icons/settings.png" alt="Settings Icon">
-                    <h3>Account Settings</h3>
                 </a>
                 <a href="../logout.php">
                     <img src="../assets/icons/logout.png" alt="Logout Icon">
@@ -287,34 +279,6 @@ $profile_pic = isset($user['profile_picture']) && !empty($user['profile_picture'
         </main>
         <!-- End of Main Content -->
 
-        <!-- Right Section -->
-        <div class="right-section">
-            <div class="nav">
-                <button id="menu-btn">
-                    <span class="material-icons-sharp">menu</span>
-                </button>
-                <div class="profile">
-                    <div class="profile-photo">
-                        <img src="<?php echo $profile_pic; ?>" alt="Profile" id="profile-pic">
-                    </div>
-                    <div class="profile-dropdown" id="profile-dropdown">
-                        <div class="profile-info">
-                            <p><b><?php echo $_SESSION['fullname']; ?></b></p>
-                            <small>User</small>
-                        </div>
-                        <div class="profile-actions">
-                            <a href="user_accountsettings.php">
-                                <span class="material-icons-sharp">settings</span>
-                                Account Settings
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End of Right Section -->
-    </div>
-
     <script>
         // Sidebar toggle
         const closeBtn = document.getElementById('close-btn');
@@ -324,21 +288,7 @@ $profile_pic = isset($user['profile_picture']) && !empty($user['profile_picture'
             sidebar.classList.toggle('open');
         });
 
-        // Profile Dropdown Toggle on Click
-        const profile = document.querySelector('.profile');
-        const profileDropdown = document.querySelector('#profile-dropdown');
-
-        profile.addEventListener('click', (e) => {
-            e.stopPropagation();
-            profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!profile.contains(e.target)) {
-                profileDropdown.style.display = 'none';
-            }
-        });
-
+        
         // Preview profile picture on file selection
         document.getElementById('profile_picture').addEventListener('change', function(event) {
             const file = event.target.files[0];
