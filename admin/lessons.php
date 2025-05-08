@@ -80,10 +80,6 @@ $rowCount = count($lessons);
           <img src="../assets/icons/video_library.png" alt="Videos Icon">
           <h3>Module List</h3>
         </a>
-        <a href="admin_accountsettings.php">
-          <img src="../assets/icons/settings.png" alt="Settings Icon">
-          <h3>Account Settings</h3>
-        </a>
         <a href="../logout.php">
           <img src="../assets/icons/logout.png" alt="Logout Icon">
           <h3>Logout</h3>
