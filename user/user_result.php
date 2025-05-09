@@ -54,10 +54,6 @@ $results_query = $conn->query("
                     <img src="../assets/icons/modules.png" alt="Scoreboard Icon">
                     <h3>Modules</h3>
                 </a>
-                <a href="user_quiz.php">
-                    <img src="../assets/icons/quiz.png" alt="Scoreboard Icon">
-                    <h3>Take Quiz</h3>
-                </a>
                 <a href="user_result.php" class="active">
                     <img src="../assets/icons/assessment.png" alt="Scoreboard Icon">
                     <h3>View Results</h3>
