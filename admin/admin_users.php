@@ -55,7 +55,7 @@ function formatLastLogin($last_login) {
                     <img src="../assets/icons/users.png" alt="Users Icon">
                     <h3>Users</h3>
                 </a>
-                <a href="admin_scoreboard.php">
+                <a href="admin_user_records.php">
                     <img src="../assets/icons/assessment.png" alt="Scoreboard Icon">
                     <h3>User Score</h3>
                 </a>
