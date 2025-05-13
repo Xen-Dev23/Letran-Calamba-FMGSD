@@ -11,13 +11,22 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== "User") {
 
 
 $user_id = $_SESSION['user_id'];
+$module_id = $_GET['module_id'];
 $lesson_count = 1;
 
-$module_id = $_GET['module_id'];
+// Get all the lessons for the module
 $lessonStmt = $pdo->prepare("SELECT * FROM lessons WHERE module_id = :module_id ORDER BY created_at DESC");
 $lessonStmt->execute([':module_id' => $module_id]);
 $lessons = $lessonStmt->fetchAll(PDO::FETCH_ASSOC);
 $rowCount = count($lessons);
+
+// Get all watched lessons by the user (for this module)
+$watchedStmt = $pdo->prepare("SELECT lesson_id FROM quiz_results WHERE user_id = :user_id AND isWatched = 1");
+$watchedStmt->execute([':user_id' => $user_id]);
+
+$watchedLessons = $watchedStmt->fetchAll(PDO::FETCH_COLUMN, 0);
+
+
 
 
 // dd($rowCount);
@@ -130,11 +139,21 @@ $rowCount = count($lessons);
           <div class="lesson-container">
             <?php foreach ($lessons as $lesson): ?>
 
-              <a href="lesson.php?lesson_id=<?= $lesson['id'] ?>" class="lesson-card">
-                <div class="lesson">
-                  Lesson <?= $lesson_count ?> - <?= $lesson['title'] ?>
-                </div>
-              </a>
+              <?php $isWatched = in_array($lesson['id'], $watchedLessons); ?>
+
+              <?php if ($isWatched) : ?>
+                <a href="lesson.php?lesson_id=<?= $lesson['id'] ?>" class="watched-lesson-card">
+                  <div class="lesson">
+                    Lesson <?= $lesson_count ?> - <?= $lesson['title'] ?>
+                  </div>
+                </a>
+              <?php else : ?>
+                <a href="lesson.php?lesson_id=<?= $lesson['id'] ?>" class="lesson-card">
+                  <div class="lesson">
+                    Lesson <?= $lesson_count ?> - <?= $lesson['title'] ?>
+                  </div>
+                </a>
+              <?php endif; ?>
 
               <?php $lesson_count++ ?>
             <?php endforeach; ?>
