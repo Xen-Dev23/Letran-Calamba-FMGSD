@@ -131,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <img src="assets/icons/eye-off.png" alt="Show/Hide Password" class="toggle-password" id="togglePassword">
             </div>
             <p class="page-link">
-                <a href="#" class="page-link-label">Forgot Password?</a>
+                <a href="forgot_password.php" class="page-link-label">Forgot Password?</a>
             </p>
             <button class="form-btn" type="submit">Log in</button>
         </form>
