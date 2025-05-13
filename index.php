@@ -110,7 +110,7 @@
                 </div>
                 <div class="nartel">
                     <span class="block text-xl font-bold text-gray-800 dark:text-white pogi">Colegio de San Juan de Letran Calamba</span>
-                    <span class="block text-sm text-gray-600 pogi2 dark:pogi2-dark">Bucal, Calamba City, Laguna, Philippines ● 4027</span>
+                    <span class="block text-sm text-gray-600 dark:text-white pogi2">Bucal, Calamba City, Laguna, Philippines ● 4027</span>
                 </div>
             </div>
         </div>
@@ -126,7 +126,7 @@
                     <img src="https://img.icons8.com/?size=50&id=phOKFKYpe00C&format=png" alt="X" class="h-6 w-6">
                 </a>
                 <a href="https://www.tiktok.com/@letrancalambaph" target="_blank" class="social-icon">
-                    <img src="https://www.svgrepo.com/show/303156/tiktok-icon-white-1-logo.svg" alt="TikTok" class="h-6 w-6">
+                    <img src="https://www.svgrepo.com/show/452114/tiktok.svg" alt="TikTok" class="h-6 w-6">
                 </a>
                 <a href="https://www.facebook.com/LetranCalambaOfficial" target="_blank" class="social-icon">
                     <img src="https://www.svgrepo.com/show/303113/facebook-icon-logo.svg" alt="Facebook" class="h-6 w-6">
@@ -273,7 +273,7 @@
                 <img src="https://www.letran-calamba.edu.ph/static/img-content/logoLetran.webp" alt="College Logo" class="h-10">
                 <div>
                     <span class="block text-lg font-semibold">Colegio de San Juan de Letran Calamba</span>
-                    <span class="block text-sm text-gray-300">Bucal, Calamba City, Laguna</span>
+                    <span class="block text-sm text-gray-300 dark:text-white">Bucal, Calamba City, Laguna</span>
                 </div>
             </div>
             <!-- Social Icons -->
@@ -288,7 +288,7 @@
                     <img src="https://img.icons8.com/?size=50&id=phOKFKYpe00C&format=png" alt="X" class="h-6 w-6">
                 </a>
                 <a href="https://www.tiktok.com/@letrancalambaph" target="_blank" class="social-icon">
-                    <img src="https://www.svgrepo.com/show/303156/tiktok-icon-white-1-logo.svg" alt="TikTok" class="h-6 w-6">
+                    <img src="https://www.svgrepo.com/show/452114/tiktok.svg" alt="TikTok" class="h-6 w-6">
                 </a>
                 <a href="https://www.facebook.com/LetranCalambaOfficial" target="_blank" class="social-icon">
                     <img src="https://www.svgrepo.com/show/303113/facebook-icon-logo.svg" alt="Facebook" class="h-6 w-6">
