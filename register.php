@@ -2,14 +2,17 @@
 include 'db/db.php';
 session_start();
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php'; // If using Composer
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Sanitize and validate inputs
     $fullname = filter_var($_POST['fullname'], FILTER_SANITIZE_STRING);
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $password = $_POST['password'];
     $role = $_POST['role'];
 
-    // Basic validation
     if (empty($fullname) || empty($email) || empty($password) || empty($role)) {
         echo "Error: All fields are required.";
         exit();
@@ -35,19 +38,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Hash the password
     $password_hashed = password_hash($password, PASSWORD_DEFAULT);
-
-    // Set a default profile picture path (since there's no file upload in the form)
     $profile_picture = "../assets/images/profile-placeholder.png";
 
-    // Insert the user into the database
     $sql = "INSERT INTO users (fullname, email, password, role, profile_picture) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sssss", $fullname, $email, $password_hashed, $role, $profile_picture);
 
     if ($stmt->execute()) {
-        // Store the fullname in session to pass it to the success page
         $_SESSION['fullname'] = $fullname;
-        // Redirect to the success page
+
+        // Send email
+        $mail = new PHPMailer(true);
+        try {
+            //Server settings
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'opulenciaandrei23@gmail.com'; // Replace with your Gmail
+            $mail->Password = 'pkou mbww kqgc hgrh';   // Replace with your App Password
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+
+            //Recipients
+            $mail->setFrom('yourgmail@gmail.com', 'EHS Registration');
+            $mail->addAddress($email, $fullname);
+
+            //Content
+            $mail->isHTML(true);
+            $mail->Subject = 'Welcome to EHS!';
+            $mail->Body    = "
+                <h2>Hello, $fullname!</h2>
+                <p>Thank you for registering at EHS.</p>
+                <p>You can now log in using your credentials.</p>
+                <p><strong>Your Email:</strong> $email</p>
+                <p>For your security, never share your password with anyone.</p>
+                <p>If you have any questions, feel free to contact us at 
+                   <a href='mailto:opulenciaandrei23@gmail.com'>opulenciaandrei23@gmail.com</a>,
+                   <a href='mailto:oliveros.sebastiencarl@gmail.com'>oliveros.sebastiencarl@gmail.com</a>,
+                </p>
+                <br><p>- EHS Team</p>
+                <hr>
+                <p style='font-size:12px;color:#888;'>This is an automated email. Please do not reply directly to this message.</p>
+            ";
+
+            $mail->send();
+        } catch (Exception $e) {
+            error_log("Mailer Error: " . $mail->ErrorInfo);
+        }
+
         header("Location: registration_success.php");
         exit();
     } else {
@@ -59,6 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="assets/images/favicon.ico">
     <link rel="stylesheet" href="./css/register.css">
-    <title>EHS - Register</title>
+    <title>EHS | Register</title>
     <style>
         .password-container {
             position: relative;

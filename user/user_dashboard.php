@@ -64,17 +64,9 @@ $update_stmt->execute();
                     <img src="../assets/icons/modules.png" alt="Modules Icon">
                     <h3>Modules</h3>
                 </a>
-                <a href="user_quiz.php">
-                    <img src="../assets/icons/quiz.png" alt="Quiz Icon">
-                    <h3>Take Quiz</h3>
-                </a>
                 <a href="user_result.php">
                     <img src="../assets/icons/assessment.png" alt="Results Icon">
                     <h3>View Results</h3>
-                </a>
-                <a href="user_accountsettings.php">
-                    <img src="../assets/icons/settings.png" alt="Settings Icon">
-                    <h3>Account Settings</h3>
                 </a>
                 <a href="../logout.php">
                     <img src="../assets/icons/logout.png" alt="Logout Icon">
