@@ -43,7 +43,7 @@
                 height: 2px;
                 bottom: -4px;
                 left: 0;
-                background-color: #FFD700;
+                background-color:rgb(255, 255, 255);
                 transition: width 0.3s ease;
             }
             .nav-link:hover::after {
@@ -146,7 +146,9 @@
                 <div class="flex items-center mb-4 md:mb-0">
                     <div class="logo-text-container">
                         <div class="logo">
-                            <img src="https://www.letran-calamba.edu.ph/static/img-content/logoLetran.webp" alt="College Logo" class="h-16">
+                            <a href="https://www.letran-calamba.edu.ph/" target="_blank" rel="noopener noreferrer">
+                                <img src="https://www.letran-calamba.edu.ph/static/img-content/logoLetran.webp" alt="College Logo" class="h-16">
+                            </a>
                         </div>
                         <div class="nartel">
                             <span class="block text-xl font-bold text-gray-800 dark:text-white pogi">Colegio de San Juan de Letran Calamba</span>
@@ -176,7 +178,7 @@
                         </a>
                     </div>
                     <div class="flex items-center space-x-3">
-                        <a href="login.php" class="w-full bg-blue-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-blue-900 dark:bg-blue-600 dark:hover:bg-blue-700 transition duration-300">LOGIN</a>
+                        <a href="login.php" class="w-full bg-blue-900 text-white px-4 py-2 rounded-full font-semibold hover:bg-blue-800 dark:bg-gray-700 dark:hover:bg-gray-600 transition duration-300">LOGIN</a>
                         <button id="theme-toggle" class="bg-gray-200 dark:bg-gray-700 p-2 rounded-full focus:outline-none">
                             <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
@@ -185,12 +187,12 @@
                     </div>
                 </div>
             </div>
-            <nav class="bg-blue-800 dark:bg-blue-900 text-white py-3">
+            <nav class="bg-blue-900 dark:bg-gray-700 text-white py-3">
                 <div class="container mx-auto px-4 flex justify-center space-x-12">
-                    <a href="#home" class="nav-link text-lg hover:text-yellow-400 dark:hover:text-yellow-300 transition">Home</a>
-                    <a href="#about" class="nav-link text-lg hover:text-yellow-400 dark:hover:text-yellow-300 transition">About</a>
-                    <a href="#features" class="nav-link text-lg hover:text-yellow-400 dark:hover:text-yellow-300 transition">Features</a>
-                    <a href="#contact" class="nav-link text-lg hover:text-yellow-400 dark:hover:text-yellow-300 transition">Contact</a>
+                    <a href="#home" class="nav-link text-lg hover:text-white dark:hover:text-white transition">Home</a>
+                    <a href="#about" class="nav-link text-lg hover:text-white dark:hover:text-white transition">About</a>
+                    <a href="#features" class="nav-link text-lg hover:text-white dark:hover:text-white transition">Features</a>
+                    <a href="#contact" class="nav-link text-lg hover:text-white dark:hover:text-white transition">Contact</a>
                 </div>
             </nav>
         </header>
@@ -200,14 +202,14 @@
                 <source src="https://www.letran-calamba.edu.ph/static/img-content/letrantourvid.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <div class="absolute inset-0 bg-blue-800 dark:bg-gray-900 opacity-60 z-10"></div>
+            <div class="absolute inset-0 bg-gray-900 dark:bg-gray-900 opacity-60 z-10"></div>
             <div class="container mx-auto px-4 h-full flex items-center justify-center text-center relative z-20">
                 <div>
                     <h1 class="text-5xl md:text-7xl font-bold mb-4 animate-hero">EHS Self-Paced Learning System</h1>
                     <p class="text-xl md:text-3xl mb-8 max-w-3xl mx-auto animate-hero" style="transition-delay: 0.2s;">
                         Transforming safety education with flexible, interactive, and comprehensive training for Letran Calamba students.
                     </p>
-                    <a href="#about" class="bg-red-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-yellow-600 dark:bg-red-500 dark:hover:bg-yellow-500 transition animate-hero" style="transition-delay: 0.4s;">Explore Now</a>
+                    <a href="#about" class="bg-transparent border border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-black dark:bg-transparent dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black transition animate-hero" style="transition-delay: 0.4s;">Explore Now</a>
                 </div>
             </div>
         </section>
@@ -236,15 +238,15 @@
                     <h3 class="text-2xl font-semibold text-center text-blue-800 dark:text-blue-300 mb-6">What Our Users Say</h3>
                     <div id="carousel" class="relative overflow-hidden">
                         <div id="carousel-items" class="flex transition-transform duration-500">
-                            <div class="min-w-full text-center p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg">
+                            <div class="min-w-full text-center p-8 bg-white dark:bg-gray-800 rounded-2xl">
                                 <p class="text-gray-600 dark:text-gray-300 italic mb-4">"The EHS system made learning safety protocols so flexible and engaging!"</p>
                                 <p class="text-blue-800 dark:text-blue-400 font-semibold">– Juan Dela Cruz, Student</p>
                             </div>
-                            <div class="min-w-full text-center p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg">
+                            <div class="min-w-full text-center p-8 bg-white dark:bg-gray-800 rounded-2xl">
                                 <p class="text-gray-600 dark:text-gray-300 italic mb-4">"I love how I can track my progress and revisit modules anytime."</p>
                                 <p class="text-blue-800 dark:text-blue-400 font-semibold">– Maria Santos, Student</p>
                             </div>
-                            <div class="min-w-full text-center p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg">
+                            <div class="min-w-full text-center p-8 bg-white dark:bg-gray-800 rounded-2xl">
                                 <p class="text-gray-600 dark:text-gray-300 italic mb-4">"A game-changer for safety education at Letran!"</p>
                                 <p class="text-blue-800 dark:text-blue-400 font-semibold">– Pedro Reyes, Faculty</p>
                             </div>
@@ -253,7 +255,7 @@
                         <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-blue-800 dark:bg-blue-700 text-white p-2 rounded-full hover:bg-blue-900 dark:hover:bg-blue-600">❯</button>
                     </div>
                 </div>
-            </div>
+            </div>  
         </section>
 
         <section id="features" class="py-20 bg-gray-50 dark:bg-gray-900">
@@ -261,19 +263,19 @@
                 <h2 class="text-4xl font-bold text-center text-blue-800 dark:text-blue-300 mb-12">System Features</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="feature-card bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-lg text-center">
-                        <img src="https://www.rockstargames.com/VI/_next/image?url=%2FVI%2F_next%2Fstatic%2Fmedia%2FMount_Kalaga_National_Park_04.e5eec73f.jpg&w=1600&q=75" alt="Self-Paced Learning" class="mx-auto mb-4 rounded-full">
+                        <img src="https://www.rockstargames.com/VI/_next/image?url=%2FVI%2F_next%2Fstatic%2Fmedia%2FMount_Kalaga_National_Park_04.e5eec73f.jpg&w=1600&q=75" alt="Self-Paced Learning" class="mx-auto mb-4 rounded-l-lg rounded-r-lg">
                         <h3 class="text-2xl font-semibold text-blue-800 dark:text-blue-400 mb-2">Self-Paced Learning</h3>
                         <p class="text-gray-600 dark:text-gray-300">Access seminars and modules anytime, anywhere, tailored to your schedule.</p>
                     </div>
                     <div class="feature-card bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-lg text-center">
-                        <img src="../assets/images/Assessments.png" alt="Interactive Assessments" class="mx-auto mb-4">
+                        <img src="https://www.rockstargames.com/VI/_next/image?url=%2FVI%2F_next%2Fstatic%2Fmedia%2FLeonida_Keys_01.1af17390.jpg&w=1920&q=75" alt="Interactive Assessments" class="mx-auto mb-4 rounded-l-lg rounded-r-lg">
                         <h3 class="text-2xl font-semibold text-blue-800 dark:text-blue-400 mb-2">Interactive Assessments</h3>
                         <p class="text-gray-600 dark:text-gray-300">Test your knowledge with engaging quizzes and real-time feedback.</p>
                     </div>
                     <div class="feature-card bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-lg text-center">
-                        <img src="https://www.rockstargames.com/VI/_next/image?url=%2FVI%2F_next%2Fstatic%2Fmedia%2FVice_City_03.9b0e117a.jpg&w=1600&q=75" alt="Progress Tracking" class="mx-auto mb-4 rounded-full">
+                        <img src="https://www.rockstargames.com/VI/_next/image?url=%2FVI%2F_next%2Fstatic%2Fmedia%2FVice_City_03.9b0e117a.jpg&w=1600&q=75" alt="Progress Tracking" class="mx-auto mb-4 rounded-l-lg rounded-r-lg">
                         <h3 class="text-2xl font-semibold text-blue-800 dark:text-blue-400 mb-2">Progress Tracking</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Monitor your learning journey with detailed reports and insights.</p>
+                        <p class="text-gray-600 dark:text-gray-300">Monitor your lear   ning journey with detailed reports and insights.</p>
                     </div>
                 </div>
             </div>
@@ -296,7 +298,7 @@
                             <label for="message" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Message</label>
                             <textarea id="message" name="message" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-800 dark:focus:ring-blue-600 transition" rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-blue-800 dark:bg-blue-600 text-white py-3 rounded-full font-semibold hover:bg-blue-900 dark:hover:bg-blue-700 transition">Send Message</button>
+                        <button type="submit" class="w-full bg-blue-900 dark:bg-gray-700 text-white py-3 rounded-full font-semibold hover:bg-blue-800 dark:hover:bg-gray-600 transition">Send Message</button>
                     </form>
                 </div>
                 <p class="text-center text-gray-700 dark:text-gray-300 mt-6">Or email us at <a href="mailto:ehs@letran-calamba.edu.ph" class="text-blue-800 dark:text-blue-400 hover:underline">ehs@letran-calamba.edu.ph</a>.</p>
@@ -304,7 +306,7 @@
         </section>
 
         <footer>
-            <div class="bg-blue-800 dark:bg-blue-900 text-white py-4">
+            <div class="bg-blue-900 dark:bg-gray-700 text-white py-4">
                 <div class="container mx-auto px-30 max-w-6xl flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
                     <div class="flex items-center space-x-4">
                         <img src="https://www.letran-calamba.edu.ph/static/img-content/logoLetran.webp" alt="College Logo" class="h-10">
@@ -411,7 +413,7 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-red-600 dark:bg-red-700 border-t-2 border-yellow-400 mt-0 pt-4 pb-4">
+            <div class="bg-red-500 dark:bg-red-500 mt-0 pt-4 pb-4">
                 <p class="text-center text-gray-100 dark:text-gray-200 text-sm">© <?php echo date("Y"); ?> Colegio de San Juan de Letran Calamba. All rights reserved.</p>
             </div>
         </footer>

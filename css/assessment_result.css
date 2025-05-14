@@ -21,7 +21,7 @@
 }
 
 .results-table th {
-    background: linear-gradient(to right, #34495e, #2980b9);
+    background-color: #12234e;
     color: #ffffff;
     font-weight: 700;
     text-transform: uppercase;
@@ -65,9 +65,10 @@
     display: inline-flex;
     align-items: center;
     padding: 8px 18px;
-    background: #f39c12;
-    color: #ffffff;
+    background: #ffffff;
+    color: #12234e;
     text-decoration: none;
+    border: 2px solid #12234e;
     border-radius: 25px;
     font-size: 14px;
     font-weight: 500;
@@ -75,17 +76,21 @@
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
+
 .results-table td a:hover {
-    background: #e67e22;
+    background: #12234e;
+    color: #ffffff;
+    border: 2px solid #12234e;
     transform: translateY(-1px);
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
 }
+
 
 .back-to-dashboard {
     display: block;
     margin: 35px auto;
     padding: 14px 35px;
-    background: linear-gradient(to right, #34495e, #2980b9);
+    background-color: #12234e;
     color: #ffffff;
     text-decoration: none;
     text-align: center;
@@ -95,10 +100,11 @@
     font-family: 'Roboto', sans-serif;
     transition: all 0.3s ease;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    width: 1100px;
 }
 
 .back-to-dashboard:hover {
-    background: linear-gradient(to right, #2c3e50, #3498db);
+    background-color: #234394;
     transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -114,13 +120,13 @@
 .lesson-quiz-container h1 {
     font-family: 'Roboto', sans-serif;
     font-size: 30px;
-    color: #2c3e50;
+    color: #12234e;
     text-align: center;
     margin-bottom: 20px;
     font-weight: 700;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    border-bottom: 2px solid #2980b9;
+    border-bottom: 2px solid #12234e;
     padding-bottom: 10px;
 }
 
