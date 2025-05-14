@@ -15,7 +15,7 @@ $module_id = $_GET['module_id'];
 $lesson_count = 1;
 
 // Get all the lessons for the module
-$lessonStmt = $pdo->prepare("SELECT * FROM lessons WHERE module_id = :module_id ORDER BY created_at DESC");
+$lessonStmt = $pdo->prepare("SELECT * FROM lessons WHERE module_id = :module_id");
 $lessonStmt->execute([':module_id' => $module_id]);
 $lessons = $lessonStmt->fetchAll(PDO::FETCH_ASSOC);
 $rowCount = count($lessons);
@@ -134,7 +134,7 @@ $watchedLessons = $watchedStmt->fetchAll(PDO::FETCH_COLUMN, 0);
               <?php $isWatched = in_array($lesson['id'], $watchedLessons); ?>
 
               <?php if ($isWatched) : ?>
-                <a href="lesson.php?lesson_id=<?= $lesson['id'] ?>" class="watched-lesson-card">
+                <a href="<?= $lesson['id'] ?>" class="watched-lesson-card">
                   <div class="lesson">
                     Lesson <?= $lesson_count ?> - <?= $lesson['title'] ?>
                   </div>
