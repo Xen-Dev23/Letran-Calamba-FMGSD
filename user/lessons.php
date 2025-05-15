@@ -9,7 +9,6 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== "User") {
   exit();
 }
 
-
 $user_id = $_SESSION['user_id'];
 $module_id = $_GET['module_id'];
 $lesson_count = 1;
@@ -23,14 +22,12 @@ $rowCount = count($lessons);
 // Get all watched lessons by the user (for this module)
 $watchedStmt = $pdo->prepare("SELECT lesson_id FROM quiz_results WHERE user_id = :user_id AND isWatched = 1");
 $watchedStmt->execute([':user_id' => $user_id]);
-
 $watchedLessons = $watchedStmt->fetchAll(PDO::FETCH_COLUMN, 0);
-
-
-
 
 // dd($rowCount);
 
+// Determine if a lesson should be locked based on previous lessons
+$isPreviousLessonWatched = true; // For Lesson 1, it's always accessible
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +81,6 @@ $watchedLessons = $watchedStmt->fetchAll(PDO::FETCH_COLUMN, 0);
     <!-- End of Sidebar Section -->
 
     <main class="video-container">
-
       <div class="video-list">
         <!-- SEARCH AND FILTERING -->
         <!-- <div class="video-controls">
@@ -127,18 +123,32 @@ $watchedLessons = $watchedStmt->fetchAll(PDO::FETCH_COLUMN, 0);
         <div class="add-new-module">
           <h2>Lessons Available</h2>
         </div>
+        <!-- Message container for completed lessons -->
+        <div id="completed-message" class="completed-message" style="display: none;">
+          You have already finished this lesson!
+        </div>
         <?php if ($rowCount > 0): ?>
           <div class="lesson-container">
-            <?php foreach ($lessons as $lesson): ?>
-
-              <?php $isWatched = in_array($lesson['id'], $watchedLessons); ?>
+            <?php foreach ($lessons as $index => $lesson): ?>
+              <?php
+              $isWatched = in_array($lesson['id'], $watchedLessons);
+              $isLocked = !$isPreviousLessonWatched && $lesson_count > 1; // Lock if previous lesson is not watched (except for Lesson 1)
+              ?>
 
               <?php if ($isWatched) : ?>
-                <a href="<?= $lesson['id'] ?>" class="watched-lesson-card">
+                <div class="watched-lesson-card" onclick="showCompletedMessage()">
                   <div class="lesson">
                     Lesson <?= $lesson_count ?> - <?= $lesson['title'] ?>
+                    <span class="complete-label">Completed</span>
                   </div>
-                </a>
+                </div>
+              <?php elseif ($isLocked) : ?>
+                <div class="locked-lesson-card">
+                  <div class="lesson">
+                    Lesson <?= $lesson_count ?> - <?= $lesson['title'] ?>
+                    <span class="locked-label">Locked</span>
+                  </div>
+                </div>
               <?php else : ?>
                 <a href="lesson.php?lesson_id=<?= $lesson['id'] ?>" class="lesson-card">
                   <div class="lesson">
@@ -147,7 +157,11 @@ $watchedLessons = $watchedStmt->fetchAll(PDO::FETCH_COLUMN, 0);
                 </a>
               <?php endif; ?>
 
-              <?php $lesson_count++ ?>
+              <?php
+              // Update the $isPreviousLessonWatched for the next iteration
+              $isPreviousLessonWatched = $isWatched;
+              $lesson_count++;
+              ?>
             <?php endforeach; ?>
           </div>
         <?php else: ?>
@@ -164,6 +178,14 @@ $watchedLessons = $watchedStmt->fetchAll(PDO::FETCH_COLUMN, 0);
     window.addEventListener('load', () => {
       document.querySelector('.loader-wrapper').style.display = 'none';
     });
+
+    function showCompletedMessage() {
+      const message = document.getElementById('completed-message');
+      message.style.display = 'block';
+      setTimeout(() => {
+        message.style.display = 'none';
+      }, 3000); // Hide after 3 seconds
+    }
   </script>
 </body>
 

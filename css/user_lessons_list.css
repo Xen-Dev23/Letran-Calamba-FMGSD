@@ -35,7 +35,57 @@
 .lesson-card:hover {
   color: white;
   font-weight: 600;
-  background-color: #7C3AED;
+  background-color: #12234e;
   font-size: 1rem;
 }
 
+.lesson {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.complete-label {
+  margin-left: auto;
+  background-color: #34C759;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+.locked-lesson-card {
+  background: rgb(220, 220, 220);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e5e5e5;
+  padding: 1rem;
+  width: 100%;
+  color: gray;
+  cursor: not-allowed;
+}
+
+.locked-label {
+  margin-left: auto;
+  background-color: #747474;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+.completed-message {
+  background-color: #34C759;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
