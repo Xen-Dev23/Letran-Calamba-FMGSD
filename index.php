@@ -242,7 +242,7 @@
                                 <p class="text-gray-600 dark:text-gray-300 italic mb-4">"The EHS system made learning safety protocols so flexible and engaging!"</p>
                                 <p class="text-blue-800 dark:text-blue-400 font-semibold">– Juan Dela Cruz, Student</p>
                             </div>
-                            <div class="min-w-full text-center p-8 bg-white dark:bg-gray-800 rounded-2xl">
+                            <div class="min-w-full text-center p-8 bg-w23hite dark:bg-gray-800 rounded-2xl">
                                 <p class="text-gray-600 dark:text-gray-300 italic mb-4">"I love how I can track my progress and revisit modules anytime."</p>
                                 <p class="text-blue-800 dark:text-blue-400 font-semibold">– Maria Santos, Student</p>
                             </div>
@@ -251,8 +251,8 @@
                                 <p class="text-blue-800 dark:text-blue-400 font-semibold">– Pedro Reyes, Faculty</p>
                             </div>
                         </div>
-                        <button id="prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-blue-800 dark:bg-blue-700 text-white p-2 rounded-full hover:bg-blue-900 dark:hover:bg-blue-600">❮</button>
-                        <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-blue-800 dark:bg-blue-700 text-white p-2 rounded-full hover:bg-blue-900 dark:hover:bg-blue-600">❯</button>
+                        <button id="prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-transparent dark:bg-transparent text-blue-900 dark:text-white p-2">❮</button>
+                        <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-transparent dark:bg-transparent text-blue-900 dark:text-white p-2">❯</button>
                     </div>
                 </div>
             </div>  
