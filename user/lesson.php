@@ -115,7 +115,7 @@ shuffle($shuffleQuestions);
           
           <div class="video-container">
             <?php if ($rowCount > 0): ?>
-              <video id="lesson_video" controls>
+              <video id="lesson_video" controls controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="return false;">
                 <source src="<?= htmlspecialchars($lesson['video_url']) ?>" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
@@ -125,6 +125,7 @@ shuffle($shuffleQuestions);
               </div>
             <?php endif; ?>
           </div>
+
 
           <div id="quiz-container" class="quiz-container hidden">
 
